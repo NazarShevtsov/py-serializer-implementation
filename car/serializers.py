@@ -13,9 +13,9 @@ class CarSerializer(serializers.Serializer):
         required=True
     )
     is_broken = serializers.BooleanField(required=True)
-    problem_description = serializers.CharField(required=False)
+    problem_description = serializers.CharField(required=False, allow_null=True)
 
-    def create(self, **validated_data) -> Car:
+    def create(self, validated_data) -> Car:
         return Car.objects.create(**validated_data)
 
     def update(self, instance, validated_data) -> Car:
